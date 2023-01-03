@@ -1,6 +1,6 @@
 # Docker buil and run examples:
 # 	sudo docker build -f Dockerfile -t tjas/thiago.tjas.com .
-# 	sudo docker run -p 80:8000 --name thiago.tjas.com --rm -d tjas/thiago.tjas.com
+# 	sudo docker run -p 80:8000 --name thiago.tjas.com -d tjas/thiago.tjas.com
 
 ARG PYTHON_VERSION="3.10.6"
 FROM python:${PYTHON_VERSION}-slim
