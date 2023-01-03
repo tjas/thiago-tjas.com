@@ -1,0 +1,18 @@
+footer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: var(--btn-blue-n1);
+    opacity: .5;
+    font-size: .8em;
+    translate: 0 -45px;
+    padding: 0 32px;
+}
+
+img.logo.django {
+    width: 64px;
+    translate: 0 7px;
+    margin-left: 4px;
+}

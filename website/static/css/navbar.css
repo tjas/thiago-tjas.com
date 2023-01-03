@@ -1,0 +1,106 @@
+/* Adapted from: 
+   https://github.com/frontend-joe/css-navbars/tree/main/navbar-2 
+*/
+
+.navbar {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 72px;
+    padding: 0 20px;
+    background: transparent;
+    color: var(--font-n1);
+}
+
+.navbar-menu button {
+    border: 0;
+    padding: 0;
+    font-family: inherit;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 120px;
+}
+
+.navbar-logo-icon {
+    height: 28px;
+}
+
+@media only screen and (min-width: 400px) {
+    .navbar-logo-icon {
+        height: 24px;
+    }
+}
+
+.navbar-logo-text {
+    display: none;
+    height: 19px;
+}
+
+@media only screen and (min-width: 400px) {
+    .navbar-logo-text {
+        display: block;
+    }
+}
+
+.navbar-menu {
+    display: flex;
+    transition: 0.3s;
+    gap: 32px;
+}
+
+@media only screen and (min-width: 600px) {
+    .navbar-menu {
+        /* flex: 1 1 auto; */
+        flex: 1 1 auto;
+        justify-content: right;
+        margin-right: 120px;
+    }
+}
+
+.navbar-menu > button {
+    position: relative;
+    /* flex: 0 0 36px; */
+    display: grid;
+    /* place-items: center; */
+    place-items: center;
+    font-size: 1.2em;
+    height: 72px;
+    /* width: 36px; */
+    opacity: 0.3;
+}
+
+.navbar-menu > button.active {
+    opacity: 1;
+}
+
+@media only screen and (min-width: 600px) {
+    .navbar-menu > button:last-child {
+        position: absolute;
+        right: 20px;
+    }
+}
+
+.localization {
+    border: 1px solid var(--btn-blue-n1);
+    border-radius: 4px;;
+    color: var(--btn-blue-n1);
+    font-size: .8em;
+    padding: 6px;
+    gap: 4px;
+}
+.localization .icon i {
+    color: var(--btn-blue-n1);
+    font-size: 1em;
+}

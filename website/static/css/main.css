@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
-
     /* References:
         https://colorhunt.co/palettes/popular
      */
@@ -32,12 +31,10 @@
     --font-n3: var(--bg-color-black-n5);
 }
 
+/* https://www.transparenttextures.com */
 body {
     font-family: 'Roboto', sans-serif;
-    /* background-color: var(--bg-color-white-n5); */
-    /* background-image: linear-gradient(to bottom right, var(--btn-blue-n1), var(--btn-blue-n4)); */
-    background: linear-gradient(to bottom, var(--btn-blue-n4), var(--bg-color-white-n5));
-    /* background-color: transparent; */
+    background-image: url("../img/patterns/absurdity.png"), linear-gradient(var(--btn-blue-n4), var(--bg-color-white-n0)); 
 }
 
 #presentation {
@@ -49,6 +46,7 @@ body {
     gap: 16px;
     height: auto;
     margin: 32px;
+    padding-top: 64px;
 }
 
 #avatar {
@@ -66,7 +64,7 @@ body {
     max-width: 600px;
 }
 
-img {
+#avatar > img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -101,13 +99,13 @@ li::marker {
     content: ""
 }
 
-a i {
+#networks ul li a i {
     color: var(--bg-color-black-n5);
     font-size: 1.5em;
     opacity: .75;
 }
 
-a i:hover {
+#networks ul li a i:hover {
     color: var(--btn-blue-n4);
     text-decoration: none;
     transition: .3s;

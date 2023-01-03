@@ -1,1 +1,55 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<section id="presentation">
+    <div id="avatar">
+        <img src="https://github.com/tjas.png" />
+    </div>
+    <div id="infos">
+        <div>
+            <h2>Thiago Jorge Almeida dos Santos</h2>
+            <p class="location">Brasília, Federal District, Brazil</p>
+            <p>My name is Thiago Jorge. I'm currently working in development of software solutions on cognitive computing, natural language processing and as Scrum Master at BB Tecnologia e Serviços. I'm specializing in Artificial Intelligence and Machine Learning and like learning new technologies.</p>
+        </div>
+        <div id="networks">
+            <ul>
+                <li>
+                    <a href="https://www.linkedin.com/in/thiago-tjas/?locale=en_US" target="_blank"
+                        data-toggle="tooltip" data-placement="bottom" title="LinkedIn" value="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/tjas" target="_blank"
+                        data-toggle="tooltip" data-placement="bottom" title="GitHub" value="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/thiago.tjas/" target="_blank"
+                        data-toggle="tooltip" data-placement="bottom" title="Instagram" value="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/channel/UCBwVmHSS1IShgwTupawfHWQ" target="_blank"
+                        data-toggle="tooltip" data-placement="bottom" title="YouTube" value="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/thiago.tjas" target="_blank"
+                        data-toggle="tooltip" data-placement="bottom" title="Facebook" value="Facebook">
+                        <i class="fa-brands fa-square-facebook"></i>
+                    </a>
+                </li>
+            <ul>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    
+</section>
+
+{% endblock %}
