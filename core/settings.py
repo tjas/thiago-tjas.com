@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from pathlib import Path
+import environ
 import os
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,19 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9mb3aux#q!zwvsq#fe78kx45i%5ofpk6_+)ka4px9v^ondmw2j'
+SECRET_KEY = env("SECRET_KEY", default='django-insecure-9mb3aux#q!zwvsq#fe78kx45ifpk6_+)ka4px9v^ondmw2j')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=False)
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '3.214.254.72',
-    'thiago-tjas.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','3.214.254.72','thiago-tjas.com']
 
 
 # Application definition
@@ -63,7 +62,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'website', 'templates'),
-            os.path.join(BASE_DIR, '.venv'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
