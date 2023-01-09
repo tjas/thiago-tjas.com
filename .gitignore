@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Whitenoise folder
+# https://whitenoise.evans.io/en/stable/django.html
+# During  "python manage.py collectstatic" some compressed copies of static
+#   files from static folders of each project/module will be stored here for
+#   optimize static files serving. This folder is configured by settings.py 
+#   STATIC_URL variable. 
+# By convention of this project, each module should have its own "static"
+#   folder. This more general folder will only be generated and used for 
+#   collectstatic, with intervention of Whitenoise, to store the files 
+#   to be served externally.
+static/
