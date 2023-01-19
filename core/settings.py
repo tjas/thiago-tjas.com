@@ -13,12 +13,25 @@ from pathlib import Path
 import environ
 import os
 
-env = environ.Env()
-# reading .env file
-environ.Env.read_env()
-
+# ----------------------------------------------------------------
+# GENERAL
+# ----------------------------------------------------------------
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+    # set casting and default values
+    DJANGO_DEBUG=(bool, False),
+    DJANGO_SECRET_KEY=(str, 'django-insecure-and-not-secret-key'),
+    DJANGO_DATABASE_DEFAULT_ENGINE=(str, 'django.db.backends.postgresql'),
+    DJANGO_DATABASE_DEFAULT_NAME=(str, 'website'),
+    DJANGO_DATABASE_DEFAULT_USER=(str, 'django'),
+    DJANGO_DATABASE_DEFAULT_PASSWORD=(str, ''),
+    DJANGO_DATABASE_DEFAULT_HOST=(str, 'localhost'),
+    DJANGO_DATABASE_DEFAULT_PORT=(str, '5432'),
+)
+# reading .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # ----------------------------------------------------------------
@@ -28,12 +41,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default='django-insecure-9mb3aux#q!zwvsq#fe78kx45ifpk6_+)ka4px9v^ondmw2j')
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','3.214.254.72','thiago-tjas.com']
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -98,8 +111,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': env('DJANGO_DATABASE_DEFAULT_ENGINE'),
+        'NAME': env('DJANGO_DATABASE_DEFAULT_NAME'),
+        'USER': env('DJANGO_DATABASE_DEFAULT_USER'),
+        'PASSWORD': env('DJANGO_DATABASE_DEFAULT_PASSWORD'),
+        'HOST': env('DJANGO_DATABASE_DEFAULT_HOST'),
+        'PORT': env('DJANGO_DATABASE_DEFAULT_PORT'),
+
+        'CONN_MAX_AGE': 30,             # https://docs.djangoproject.com/pt-br/4.1/ref/settings/#conn-max-age
+        'CONN_HEALTH_CHECKS': True,     # https://docs.djangoproject.com/pt-br/4.1/ref/settings/#std-setting-CONN_HEALTH_CHECKS (New in Django 4.1)
     }
 }
 
