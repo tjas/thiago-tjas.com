@@ -24,12 +24,24 @@ Some Amazon Linux 2 pre-built in applications are older versions and may not sat
 
 #### 1. Pre requirements
 
+* To check Amazon Linux 2 distro details
+  * ```cat /etc/os-release```
+  * ```hostnamectl```
+  * ```cat /etc/image-id```
+  * ```cat /etc/system-release```
+* Search and install Amazon Linux 2 Extra packages
+  * ```sudo yum install amazon-linux-extras```
+  * ```amazon-linux-extras | grep -i python```
+  * ```sudo amazon-linux-extras install <package>```
+* To view repo list
+  * ```sudo yum repolist```
+
 * Your production environment must have some aditional developer packages installed.
   * Ubuntu: 
     * ```sudo apt update```
     * ```sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl```
   * Amazon Linux 2
-    * ```sudo yum update -y```
+    * ```sudo yum update -y``` | ```sudo yum update --security```
     * ```sudo yum groupinstall "Development Tools" -y```
     * ```sudo yum erase openssl-devel -y```
     * ```sudo yum install yum-utils openssl11 openssl11-devel libffi-devel bzip2-devel python3-pip postgresql-devel nginx wget -y```
@@ -49,7 +61,7 @@ Some Amazon Linux 2 pre-built in applications are older versions and may not sat
     * ```sudo make altinstall```
     * ```python3.10 --version```
     * ```sudo rm -f Python-3.10.2.tgz```
-  * **POSTGRESQL**.
+  * **POSTGRESQL**. To install [use some tutorial](https://techviewleo.com/how-to-install-postgresql-database-on-amazon-linux/). If you have any error related to alocation of memory during installation process, stop some services to free memory space.
     * Verify your PostgreSQL version, then add the bin folder to the ```$PATH```
       * ```sudo -u postgres psql -c "SELECT version();"```
       * ```export PATH=$PATH:/usr/lib/postgresql/15/bin/``` (verify the correct path to PostgreSQL bin folder)
