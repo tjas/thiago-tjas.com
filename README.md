@@ -49,8 +49,8 @@ sudo docker start thiago-tjas.com
 sudo docker restart thiago-tjas.com
 sudo docker stop thiago-tjas.com
 
-sudo docker rmi -f tjas/thiago.tjas.com
-sudo docker rm thiago.tjas.com
+sudo docker rmi -f tjas/thiago-tjas.com
+sudo docker rm thiago-tjas.com
 ```
 
 ## Contact
