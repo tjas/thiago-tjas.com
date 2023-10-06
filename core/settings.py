@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "whitenoise.runserver_nostatic",
+    #"whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'fontawesomefree',
     'website'
@@ -183,8 +183,21 @@ STATICFILES_DIRS = [
 # Whitenoise - Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 # https://whitenoise.evans.io/en/stable/django.html
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-STORAGES
+# A dictionary containing the settings for all storages to be used with Django
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        # "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",   # default storage engine.
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",   # Whitenoise: Add compression and caching support
+        #"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",          # Whitenoise: Add compression but not caching support
+    },
+}
 
 # ----------------------------------------------------------------
 # DEFAULT VALUES
