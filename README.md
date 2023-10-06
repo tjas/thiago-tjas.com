@@ -32,6 +32,27 @@ O website foi implantado do zero em um servidor virtual privado [Amazon Web Serv
 
 The website was deployed into an [Amazon Web Service (AWS) Lightsail VPS](https://aws.amazon.com/lightsail/), using an [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) image from scratch. An article addressing the experiences obtained in this process is under construction, when completed it will be made available here: [Deploying a Django Website on AWS Lightsail VPS](./ARTICLE_DEPLOYNG_A_DJANGO_WEBSITE_ON_AWS_LIGHTSAIL_VPS.md).
 
+## Running on Docker
+
+Useful Docker commands.
+
+```sh
+sudo docker build -f Dockerfile -t tjas/thiago-tjas.com .
+sudo docker run -p 80:8000 --name thiago-tjas.com -d tjas/thiago-tjas.com
+
+sudo docker ps -a
+sudo docker images
+
+sudo docker exec -it thiago-tjas.com /bin/bash
+
+sudo docker start thiago-tjas.com
+sudo docker restart thiago-tjas.com
+sudo docker stop thiago-tjas.com
+
+sudo docker rmi -f tjas/thiago.tjas.com
+sudo docker rm thiago.tjas.com
+```
+
 ## Contact
 
 **Thiago Jorge Almeida dos Santos**, project author and maintainer.
