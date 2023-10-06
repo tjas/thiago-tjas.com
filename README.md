@@ -44,6 +44,7 @@ sudo docker ps -a
 sudo docker images
 
 sudo docker exec -it thiago-tjas.com /bin/bash
+sudo docker container logs -f -t thiago-tjas.com
 
 sudo docker start thiago-tjas.com
 sudo docker restart thiago-tjas.com
