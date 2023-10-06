@@ -138,4 +138,4 @@ dmypy.json
 #   folder. This more general folder will only be generated and used for 
 #   collectstatic, with intervention of Whitenoise, to store the files 
 #   to be served externally.
-static/
+static/*
