@@ -34,11 +34,11 @@ The website was deployed into an [Amazon Web Service (AWS) Lightsail VPS](https:
 
 ## Running on Docker
 
-Useful Docker commands.
+Useful Docker commands:
 
 ```sh
 sudo docker build -f Dockerfile -t tjas/thiago-tjas.com .
-sudo docker run -p 80:8000 --name thiago-tjas.com -d tjas/thiago-tjas.com
+sudo docker run -p 80:80 --name thiago-tjas.com -d tjas/thiago-tjas.com
 
 sudo docker ps -a
 sudo docker images
@@ -54,6 +54,19 @@ sudo docker rmi -f tjas/thiago-tjas.com
 sudo docker rm thiago-tjas.com
 ```
 
+<!-- Useful AWS ec2 instance commands:
+
+```sh
+# Clear the YUM Cache
+sudo yum clean all
+rm -rf /var/cache/yum
+
+# Update CA Certificates
+sudo yum update ca-certificates
+
+sudo yum update
+```
+ -->
 ## Contact
 
 **Thiago Jorge Almeida dos Santos**, project author and maintainer.
