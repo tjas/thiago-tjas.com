@@ -11,6 +11,7 @@ FROM python:${PYTHON_VERSION}-slim
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends build-essential \
 		# vim procps curl dnsutils iputils-ping iproute2 nmap\
+		nano curl \
         python3-dev gcc libpq-dev musl-dev \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/lists/*
