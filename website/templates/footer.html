@@ -1,6 +1,90 @@
-<footer>
-    <div>
-        © {% now "Y" %} Thiago Jorge Almeida dos Santos, all rights reserved.
-        {% comment %} <span>Made with <a href="http://www.djangoproject.com/"><img class="logo django" src="https://static.djangoproject.com/img/logo-django.42234b631760.svg" border="0" alt="Django" title="Django" /></a><span> {% endcomment %}
+<div class="footer-wrapper">
+    <div class="footer-section">
+        <div class="footer-subscribe">
+            <h2>
+                Feel free to contact me.
+            </h2>
+            <p>Soon I will make a blog available where you can follow some of my private projects.</p>
+            <div class="footer-systems">
+                <ul>
+                    <li><span class="active" href="#">Website</span></li>
+                    <li><a class="" href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            {% comment %} <div class="input-box">
+                <input type="email" placeholder="Email Address" />
+                <button>
+                    <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="#EEEEEE"></path>
+                    </svg>
+                </button>
+            </div> {% endcomment %}
+
+            {% comment %} <div class="footer-legals">
+                <div class="footer-copyright">
+                    <p>© {% now "Y" %} Thiago Jorge Almeida dos Santos, all rights reserved.</p>
+                </div>
+                <div class="footer-politics">
+                    <ul>
+                        <li>
+                            <a href="#"><p>Privacy Policy</p></a>
+                        </li>
+                        <li>
+                            <a href="#"><p>Terms of Use</p></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> {% endcomment %}
+        </div>
+
+        <nav class="footer-nav">
+            <div>
+                <h3>Website</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#tecnologies">Technologies</a></li>
+                    <li><a href="#career">Career</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            {% comment %} <div>
+                <h3>Blog</h3>
+                <ul>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Books</a></li>
+                </ul>
+            </div> {% endcomment %}
+            <div>
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/thiago-tjas/?locale=en_US">LinkedIn</a></li>
+                    <li><a href="https://github.com/tjas">GitHub</a></li>
+                    <li><a href="https://www.instagram.com/thiago.tjas/">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCBwVmHSS1IShgwTupawfHWQ">YouTube</a></li>
+                    <li><a href="https://www.facebook.com/thiago.tjas">Facebook</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</footer>
+
+    <div class="footer-legals">
+        <div class="footer-copyright">
+            <p>© {% now "Y" %} Thiago Jorge Almeida dos Santos, all rights reserved.</p>
+        </div>
+        <div class="footer-politics">
+            <ul>
+                <li>
+                    <a href="#"><p>Privacy Policy</p></a>
+                </li>
+                <li>
+                    <a href="#"><p>Terms of Use</p></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% comment %} © {% now "Y" %} Thiago Jorge Almeida dos Santos, all rights reserved. {% endcomment %}
+    {% comment %} <span>Made with <a href="http://www.djangoproject.com/"><img class="logo django" src="https://static.djangoproject.com/img/logo-django.42234b631760.svg" border="0" alt="Django" title="Django" /></a><span> {% endcomment %}
+</div>
+

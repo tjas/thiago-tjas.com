@@ -6,7 +6,32 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+html {
+    font-size: 62.5%;
+}
 body{
-    font-size: 100%;
+    /* font-size: 100%; */
     list-style-type: none;
+    /* overflow: hidden; */
+}
+
+/* * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+} */
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: none !important;
+    background-color: transparent;
+    display: none;
+}
+
+body::-webkit-scrollbar {
+    background-color: transparent;
+    display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    display: none;
 }

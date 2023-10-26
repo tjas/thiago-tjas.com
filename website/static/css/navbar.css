@@ -2,7 +2,7 @@
    https://github.com/frontend-joe/css-navbars/tree/main/navbar-2 
 */
 
-.navbar {
+/* .navbar {
     position: fixed;
     z-index: 10;
     top: 0;
@@ -62,7 +62,6 @@
 
 @media only screen and (min-width: 600px) {
     .navbar-menu {
-        /* flex: 1 1 auto; */
         flex: 1 1 auto;
         justify-content: right;
         margin-right: 120px;
@@ -71,13 +70,10 @@
 
 .navbar-menu > button {
     position: relative;
-    /* flex: 0 0 36px; */
     display: grid;
-    /* place-items: center; */
     place-items: center;
     font-size: 1.2em;
     height: 72px;
-    /* width: 36px; */
     opacity: 0.3;
 }
 
@@ -94,7 +90,7 @@
 
 .localization {
     border: 1px solid var(--btn-blue-n1);
-    border-radius: 4px;;
+    border-radius: 4px;
     color: var(--btn-blue-n1);
     font-size: .8em;
     padding: 6px;
@@ -103,4 +99,4 @@
 .localization .icon i {
     color: var(--btn-blue-n1);
     font-size: 1em;
-}
+} */

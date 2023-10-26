@@ -1,8 +1,111 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-<section id="presentation">
+<div>
+    <section id="about" class="section">
+        <div class="bg-text-container">
+            <div class="bg-text-text">About</div>
+        </div>
+        <div class="content">
+            <div id="infos" class="animated-text">
+                <div>
+                    <h2>Thiago Jorge Almeida dos Santos</h2>
+                    <p class="location">Brasília, Federal District, Brazil</p>
+                    <p>Be welcome! My name is Thiago Jorge. I'm currently working in software development and Artificial Intelligence at BRB Bank. I'm Computer Science Bachelor, Artificial Intelligence specialist, developer, like learning new technologies and work on big projects.</p>
+                </div>
+                <div id="networks">
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com/in/thiago-tjas/?locale=en_US" target="_blank"
+                                data-toggle="tooltip" data-placement="bottom" title="LinkedIn" value="LinkedIn">
+                                <i class="fa-brands fa-linkedin" alt="LinkedIn"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/tjas" target="_blank"
+                                data-toggle="tooltip" data-placement="bottom" title="GitHub" value="GitHub">
+                                <i class="fa-brands fa-github" alt="GitHub"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/thiago.tjas/" target="_blank"
+                                data-toggle="tooltip" data-placement="bottom" title="Instagram" value="Instagram">
+                                <i class="fa-brands fa-instagram" alt="Instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCBwVmHSS1IShgwTupawfHWQ" target="_blank"
+                            data-toggle="tooltip" data-placement="bottom" title="YouTube" value="YouTube">
+                                <i class="fa-brands fa-youtube" alt="YouTube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/thiago.tjas" target="_blank"
+                                data-toggle="tooltip" data-placement="bottom" title="Facebook" value="Facebook">
+                                <i class="fa-brands fa-square-facebook" alt="Facebook"></i>
+                            </a>
+                        </li>
+                        <ul>
+                </div>
+            </div>
+
+            <div class="avatar">
+                <div class="image-container">
+                  {% comment %} <img class="element" src="https://github.com/tjas.png" /> {% endcomment %}
+                  <img class="element" src="{% static 'img/photos/personal-1.png' %}" alt="Photography of Thiago Jorge" />
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="bg-art-container"> {% endcomment %}
+        <div class="bg-art bg-shadow"></div>
+        {% comment %} </div> {% endcomment %}
+    </section>
+    
+    <section id="technologies" class="section">
+        <div class="bg-text-container">
+            <div class="bg-text-text">Technologies</div>
+        </div>
+        <div class="content">
+            <p>Technologies</p>
+        </div>
+    </section>
+
+    <section id="career" class="section">
+        <div class="bg-text-container">
+            <div class="bg-text-text">Career</div>
+        </div>
+        <div class="content">
+            <p>Career</p>
+        </div>
+
+        <div class="bg-ellipse-white bg-top-right"></div>
+    </section>
+
+
+    <section id="portfolio" class="section">
+        <div class="bg-text-container">
+            <div class="bg-text-text">Portfolio</div>
+        </div>
+        <div class="content">
+            <p>Portfolio</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="bg-text-container">
+            <div class="bg-text-text">Contact</div>
+        </div>
+        <div class="content">
+            <p>Contact</p>
+        </div>
+    </section>
+    {% comment %} <aside class="on-scroll"></aside> {% endcomment %}
+</div>
+
+{% comment %} <section id="presentation">
     <div id="avatar">
         <img src="https://github.com/tjas.png" />
     </div>
@@ -50,6 +153,6 @@
 
     {% include 'footer.html' %}
     
-</section>
+</section> {% endcomment %}
 
 {% endblock %}

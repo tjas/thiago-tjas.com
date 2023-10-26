@@ -1,20 +1,47 @@
-<nav class="navbar">
-    <h1 class="navbar-logo">
+{% load static %}
+
+<nav id="navbar" class="navbar glass bg-dark bg-primary-0">
+    <h1 class="logo">
         {% comment %} <img class="navbar-logo-icon" src="{% static 'img/logo.png' %}" /> {% endcomment %}
         {% comment %} <img class="navbar-logo-text" src="{% static 'img/logo-text.png' %}" /> {% endcomment %}
-        <span class="navbar-logo-text"></span>
+        <span>TJAS | Website</span>
     </h1>
-    <nav class="navbar-menu">
-        <button class="btn-opt"> </button>
-        {% comment %} <button class="btn-opt">Technologies</button>
-        <button class="btn-opt">Portfolio</button>
-        <button class="btn-opt">Career</button>
-        <button class="btn-opt">Contact</button> {% endcomment %}
-        <button type="button" class="btn-opt">
-        <div class="localization">
-            EN
-            <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
-        </div>
-        </button>
-    </nav>
+    <img
+        class="menu-icon"
+        src="{% static 'img/svg/burger-menu.svg' %}"
+        title='Toggle Menu'
+        alt='Toggle Menu'
+        onclick="toggleMenu(this)"
+    >
+    <ul id="menu" class="menu">
+
+        <li><a id="menu-about" href="#about" class="opt active">About</a></li>
+        <li><a id="menu-technologies" href="#technologies" class="opt">Technologies</a></li>
+        <li><a id="menu-career" href="#career" class="opt">Career</a></li>
+        <li><a id="menu-portfolio" href="#portfolio" class="opt">Portfolio</a></li>
+        <li><a id="menu-contact" href="#contact" class="opt">Contact</a></li>
+
+        {% comment %} <li>
+            <button class="btn btn-primary-4">
+                <a href="">Login</a>
+            </button>
+        </li> {% endcomment %}
+
+        <li class="localization">
+            <a href="#" class="lang">EN
+                {% comment %} <div class="lang">EN {% endcomment %}
+                    {% comment %} <span class="icon">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </span> {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+            </a>
+        </li>
+
+        {% comment %} <li class="localization">
+            <a><div class="lang">
+                EN
+                <span class="icon"><i class="fa-solid fa-caret-down"></i></span>
+            </div></a>
+        </li> {% endcomment %}
+    </ul>
 </nav>

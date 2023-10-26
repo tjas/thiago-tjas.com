@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "whitenoise.runserver_nostatic",
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'fontawesomefree',
     'website'
@@ -193,7 +193,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",   # default storage engine.
+        #"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",   # default storage engine.
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",   # Whitenoise: Add compression and caching support
         #"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",          # Whitenoise: Add compression but not caching support
     },

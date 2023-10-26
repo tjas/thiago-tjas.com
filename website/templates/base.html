@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 {% load static %}
-
-<html>
+<html lang="en">
     <head>
         <!-- Bootstrap required meta tags -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,21 +18,34 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">    
         <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
     </head>
 
-    <body>
+    <body id="body" class="bg-dark bg-primary-0">
         <header>
             {% include 'navbar.html' %}
         </header>
 
-        <main> 
+        <main class="scrollable-content"> 
             {% block content %}
                 {% include 'home.html' %}
             {% endblock %}
+
+            <aside id="scrollbar-track" class="scrollbar-track scrollbar-track-y">
+                <div id="scrollbar-thumb" class="scrollbar-thumb scrollbar-thumb-y"></div>
+            </aside>
+
+            <footer>
+                {% include 'footer.html' %}
+            </footer>
         </main>
         
         {% comment %} <script type="text/javascript" src="{% static 'js/tooltips.js' %}"></script> {% endcomment %}
+
+
+        {% comment %} <script type="text/javascript" src="{% static 'js/smoothscroll.js' %}"></script> {% endcomment %}
+        {% comment %} <script type="text/javascript" src="{% static 'js/main.jquery.js' %}"></script> {% endcomment %}
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     </body>
 </html>
