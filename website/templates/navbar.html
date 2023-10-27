@@ -28,7 +28,7 @@
         </li> {% endcomment %}
 
         <li class="localization">
-            <a href="#" class="lang">EN
+            <a id="lang" href="#" class="lang">EN
                 {% comment %} <div class="lang">EN {% endcomment %}
                     {% comment %} <span class="icon">
                         <i class="fa-solid fa-caret-down"></i>
@@ -44,4 +44,25 @@
             </div></a>
         </li> {% endcomment %}
     </ul>
+
+    <div id="internationalization" class="internationalization">
+        <div class="go-back">
+            <button
+                title='Back'
+                alt='Back'
+                onclick="toggleInternationalization(this)"
+            >
+                <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="#EEEEEE"></path>
+                </svg>
+            </button>
+        </div>
+
+        <h2>Language</h2>
+        <ul class="languages">
+            <li><a class="opt-lang active" href="#" value="EN">English</a></li>
+            <li><a class="opt-lang" href="#" value="PT">Portuguese</a></li>
+        </ul>
+    </div>
+
 </nav>

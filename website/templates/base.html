@@ -14,24 +14,26 @@
         
         <title>{% block title %}thiago-tjas{% endblock %}</title>
 
-        {% comment %} <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script> {% endcomment %}
+        {% comment %} <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script> {% endcomment %}
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">    
         <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
-    </head>
 
+    </head>
+    
     <body id="body" class="bg-dark bg-primary-0">
+        {% comment %} <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script> {% endcomment %}
         <header>
             {% include 'navbar.html' %}
         </header>
 
         <main class="scrollable-content"> 
             {% block content %}
-                {% include 'home.html' %}
+            {% include 'home.html' %}
             {% endblock %}
-
+            
             <aside id="scrollbar-track" class="scrollbar-track scrollbar-track-y">
                 <div id="scrollbar-thumb" class="scrollbar-thumb scrollbar-thumb-y"></div>
             </aside>
@@ -42,10 +44,9 @@
         </main>
         
         {% comment %} <script type="text/javascript" src="{% static 'js/tooltips.js' %}"></script> {% endcomment %}
-
-
+        
         {% comment %} <script type="text/javascript" src="{% static 'js/smoothscroll.js' %}"></script> {% endcomment %}
-        {% comment %} <script type="text/javascript" src="{% static 'js/main.jquery.js' %}"></script> {% endcomment %}
         <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        {% comment %} <script type="text/javascript" src="{% static 'js/main.jquery.js' %}"></script> {% endcomment %}
     </body>
 </html>

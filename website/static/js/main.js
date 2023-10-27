@@ -86,7 +86,7 @@ function checkVisible(elm, threshold, mode) {
     return response;
   }
 
-function checkVisible2(elm, threshold) {
+/* function checkVisible2(elm, threshold) {
     threshold = threshold || 1.0;
 
     let rect = elm.getBoundingClientRect();
@@ -99,9 +99,9 @@ function checkVisible2(elm, threshold) {
     } else {
         return 0;
     }
-}
+} */
 
-function checkVisible3(elm, threshold) {
+/* function checkVisible3(elm, threshold) {
     threshold = threshold || 1.0;
 
     let rect = elm.getBoundingClientRect();
@@ -113,7 +113,95 @@ function checkVisible3(elm, threshold) {
     } else {
         return 0;
     }
-}
+} */
+
+/**
+ * Vertical draggable scroll
+ */
+
+// Make the DIV element draggable:
+/* dragElement(document.getElementById("scrollbar-thumb"));
+
+function dragElement(elmnt) {
+    //let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let pos2 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        // if present, the header is where you move the DIV from:
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        // otherwise, move the DIV from anywhere inside the DIV:
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.Event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        //pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.Event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        //pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        //pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        //elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+} */
+
+
+/* $("#scrollbar-thumb").draggable({
+    axis: "y",
+    revert: false,
+    containment: "#scrollbar-track"
+}); */
+
+/* var x = document.getElementById('a')    
+
+for(var n=0; n<x.children.length; n++) {
+    ;(function(c) {
+        c.addEventListener('mousedown', function(e) {
+            console.log('dragstart')
+            this.style.opacity = '.9'
+            this.style.position = 'relative'
+
+            if(c.style.top === "") {
+                var offsetStart = 0
+            } else {
+                var offsetStart = parseInt(c.style.top.slice(0,-2))
+            }
+
+            var mouseStart = e.pageY
+            var mousemoveHandler;
+            document.addEventListener('mousemove', mousemoveHandler  = function(e) {
+                this.style.opacity -= '.01'
+                c.style.top = offsetStart + e.pageY - mouseStart
+                console.log('drag: ', e.pageY, mouseStart, c.style.top)
+            })
+            document.addEventListener('mouseup', function(e) {
+                console.log('dragend')
+                document.removeEventListener('mousemove', mousemoveHandler)
+            })
+        })
+    })(x.children[n])
+} */
+
+
 
 /* document.getElementById("scrollbar").addEventListener("scroll", (e) => {
 
@@ -229,15 +317,15 @@ document.querySelectorAll('.opt') = e => {
  * Toogle Menu 
  */
 const toggleMenu = () => {
-    const burgerMenu = document.querySelector(".menu-icon");
-    const src = burgerMenu.getAttribute('src');
+    const menuIcon = document.querySelector(".menu-icon");
+    const src = menuIcon.getAttribute('src');
     const iconName = src === '/static/img/svg/burger-menu.svg' ?
         '/static/img/svg/close.svg'
         :
         '/static/img/svg/burger-menu.svg';
 
 
-    burgerMenu.setAttribute(
+    menuIcon.setAttribute(
         'src',
         iconName
     );
@@ -247,4 +335,63 @@ const toggleMenu = () => {
     navigation.classList.toggle(
         'menu--mobile'
     );
+
+    let internationalization = document.getElementById('internationalization');
+    if (internationalization.classList.contains('internationalization--mobile')){
+        toggleInternationalization();
+    }
+
 };
+
+const trigger = (el, etype, custom) => {
+    const evt = custom ?? new Event( etype );
+    el.dispatchEvent( evt );
+  };
+
+document.querySelectorAll('.opt').forEach(
+    opt => {
+        opt.addEventListener('click', function(event) {
+            let navigation = document.getElementById('menu');
+            if (navigation.classList.contains('menu--mobile')){
+                trigger( document.querySelector('.menu-icon'), 'click' );
+            };
+        });
+});
+
+const toggleInternationalization = () => {
+    const navigation = document.querySelector('.menu');
+
+    navigation.classList.toggle('menu--mobile');
+
+    const internationalization = document.querySelector('.internationalization');
+
+    internationalization.classList.toggle('internationalization--mobile');
+
+    navigation.classList.toggle('menu--mobile');
+};
+
+document.querySelectorAll('.lang').forEach(
+    opt => {
+        opt.addEventListener('click', function(event) {
+            let internationalization = document.getElementById('internationalization');
+            if (!internationalization.classList.contains('internationalization--mobile')){
+                //document.querySelector('.menu-icon').style.display = 'none';
+                toggleInternationalization();
+            } else {
+                //document.querySelector('.menu-icon').style.display = 'block';
+            };
+        });
+});
+
+document.querySelectorAll('.opt-lang').forEach(
+    opt => {
+        opt.addEventListener('click', function(e) {
+                document.querySelectorAll('.opt-lang').forEach(
+                    e => e.classList.remove('active')
+                );
+                e.target.classList.add('active');
+                let language = e.target.getAttribute('value') ;
+                document.getElementById("lang").textContent = language;
+                toggleInternationalization();
+        });
+});
