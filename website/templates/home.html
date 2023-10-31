@@ -10,7 +10,7 @@
             <div class="bg-text-text">About</div>
         </div>
         <div class="content">
-            <div id="infos" class="animated-text">
+            <article id="infos">
                 <div>
                     <h2>Thiago Jorge Almeida dos Santos</h2>
                     <p class="location">Brasília, Federal District, Brazil</p>
@@ -50,12 +50,18 @@
                         </li>
                         <ul>
                 </div>
-            </div>
+            </article>
 
-            <div class="avatar">
+            {% comment %} <div class="avatar">
                 <div class="image-container">
-                  {% comment %} <img class="element" src="https://github.com/tjas.png" /> {% endcomment %}
-                  <img class="element" src="{% static 'img/photos/personal-1.png' %}" alt="Photography of Thiago Jorge" />
+                    <img class="element" src="{% static 'img/photos/personal-1.png' %}" alt="Photography of Thiago Jorge" />
+                </div>
+            </div> {% endcomment %}
+            {% comment %} <img class="element" src="https://github.com/tjas.png" /> {% endcomment %}
+            
+            <div id="avatar" class="avatar">
+                <div class="image-container">
+                    <img class="img" src="{% static 'img/photos/photo-rio_v2_complete.png' %}" alt="Photography of Thiago Jorge" />
                 </div>
             </div>
         </div>

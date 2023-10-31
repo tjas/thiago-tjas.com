@@ -361,25 +361,32 @@ document.querySelectorAll('.opt').forEach(
 const toggleInternationalization = () => {
     const navigation = document.querySelector('.menu');
 
-    navigation.classList.toggle('menu--mobile');
+    navigation.classList.toggle(
+        'menu--mobile'
+    );
 
     const internationalization = document.querySelector('.internationalization');
 
-    internationalization.classList.toggle('internationalization--mobile');
+    internationalization.classList.toggle(
+        'internationalization--mobile'
+    );
 
-    navigation.classList.toggle('menu--mobile');
+    navigation.classList.toggle(
+        'menu--mobile'
+    );
 };
 
-document.querySelectorAll('.lang').forEach(
+document.querySelectorAll('.localization').forEach(
     opt => {
         opt.addEventListener('click', function(event) {
-            let internationalization = document.getElementById('internationalization');
+            /* let internationalization = document.getElementById('internationalization');
             if (!internationalization.classList.contains('internationalization--mobile')){
-                //document.querySelector('.menu-icon').style.display = 'none';
                 toggleInternationalization();
-            } else {
-                //document.querySelector('.menu-icon').style.display = 'block';
-            };
+            }; */
+            toggleInternationalization();
+            /* internationalization.classList.toggle(
+                'show'
+            ); */
         });
 });
 
@@ -389,9 +396,38 @@ document.querySelectorAll('.opt-lang').forEach(
                 document.querySelectorAll('.opt-lang').forEach(
                     e => e.classList.remove('active')
                 );
-                e.target.classList.add('active');
+                //e.target.classList.add('active');
                 let language = e.target.getAttribute('value') ;
+                document.querySelectorAll(`.opt-lang[value="${language}"]`).forEach(
+                    e => e.classList.add('active')
+                );
+
                 document.getElementById("lang").textContent = language;
                 toggleInternationalization();
         });
 });
+
+/**
+ * Avatar image moving effect
+ */
+
+
+
+/**
+ * Dropdown button
+ */
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+/* function myDropdownFunction() {
+    document.getElementById("language-dropdown").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.btn-dropdown')) {
+    let myDropdown = document.getElementById("language-dropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    }
+  } */
