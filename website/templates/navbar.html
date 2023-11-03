@@ -1,6 +1,18 @@
+{% load i18n %}
+
 {% load static %}
 
-<nav id="navbar" class="navbar glass bg-dark bg-primary-0">
+{% translate "About" as section_about %}
+{% translate "Skills" as section_skills %}
+{% translate "Experiences" as section_experiences %}
+{% translate "Projects" as section_projects %}
+{% translate "Contact" as section_contact %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<nav id="navbar" class="navbar glass">
     <h1 class="logo">
         {% comment %} <img class="navbar-logo-icon" src="{% static 'img/logo.png' %}" /> {% endcomment %}
         {% comment %} <img class="navbar-logo-text" src="{% static 'img/logo-text.png' %}" /> {% endcomment %}
@@ -10,17 +22,17 @@
         id="menu-icon"
         class="menu-icon"
         src="{% static 'img/svg/burger-menu.svg' %}"
-        title='Toggle Menu'
-        alt='Toggle Menu'
+        title="{% translate "Toggle Menu" %}"
+        alt="{% translate "Toggle Menu" %}"
         onclick="toggleMenu(this)"
     >
     <ul id="menu" class="menu">
 
-        <li><a id="menu-about" href="#about" class="opt active">About</a></li>
-        <li><a id="menu-technologies" href="#technologies" class="opt">Technologies</a></li>
-        <li><a id="menu-career" href="#career" class="opt">Career</a></li>
-        <li><a id="menu-portfolio" href="#portfolio" class="opt">Portfolio</a></li>
-        <li><a id="menu-contact" href="#contact" class="opt">Contact</a></li>
+        <li><a id="menu-about" href="#about" class="opt active">{{ section_about }}</a></li>
+        <li><a id="menu-skills" href="#skills" class="opt">{{ section_skills }}</a></li>
+        <li><a id="menu-experiences" href="#experiences" class="opt">{{ section_experiences }}</a></li>
+        <li><a id="menu-projects" href="#projects" class="opt">{{ section_projects }}</a></li>
+        <li><a id="menu-contact" href="#contact" class="opt">{{ section_contact }}</a></li>
 
         {% comment %} <li>
             <button class="btn btn-primary-4">
@@ -29,7 +41,7 @@
         </li> {% endcomment %}
 
         <li id="localization" class="localization">
-            <a id="lang" href="#" onclick="event.preventDefault()" class="lang">EN
+            <a id="lang" href="#" onclick="event.preventDefault()" class="lang">{{ LANGUAGE_CODE|upper }}
                 {% comment %} <div class="lang">EN {% endcomment %}
                     {% comment %} <span class="icon">
                         <i class="fa-solid fa-caret-down"></i>
@@ -57,27 +69,36 @@
     <div id="internationalization" class="internationalization">
         <div class="go-back">
             <img
-                src="{% static 'img/svg/send.svg' %}"
-                title='Back'
-                alt='Back'
-                onclick="toggleInternationalization(this)"
-            >
-            {% comment %} <button
-                title='Back'
-                alt='Back'
-                onclick="toggleInternationalization(this)"
-            >
+                    src="{% static 'img/svg/send.svg' %}"
+                    title="{% translate "Back" %}"
+                    alt="{% translate "Back" %}"
+                    onclick="toggleInternationalization(this)"
+                >
+                {% comment %} <button
+                    title='Back'
+                    alt='Back'
+                    onclick="toggleInternationalization(this)"
+                >
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" width="41" height="22" viewBox="0 0 41 22"  stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
-                </svg> {% endcomment %}
-            </button>
+                        <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+                    </svg> {% endcomment %}
+                    {% comment %} </button> {% endcomment %}
         </div>
-
-        <h2>Language</h2>
-        <ul id="languages" class="languages">
-            <li><a class="opt-lang active" href="#" value="EN">English</a></li>
-            <li><a class="opt-lang" href="#" value="PT">Portuguese</a></li>
-        </ul>
+                
+        {% comment %} <form action="{% url 'set_language' %}" method="post">{% csrf_token %} {% endcomment %}
+            <h2>{% translate "Language" %}</h2>
+            {% comment %} <input name="next" type="hidden" value="{{ redirect_to }}"> {% endcomment %}
+            <ul id="languages" class="languages">
+                {% for language in languages %}
+                {% comment %} <li><a class="opt-lang {% if language.code == LANGUAGE_CODE %}active{% endif %}" href="#" value="{{ language.code }}">{{ language.name_translated }}</a></li> {% endcomment %}
+                <li><a class="opt-lang {% if language.code == LANGUAGE_CODE %}active{% endif %}" href="/{{ language.code }}" value="{{ language.code }}">{{ language.name_translated }}</a></li>
+                    {% comment %} <li><a class="opt-lang {% if language.code == LANGUAGE_CODE %}active{% endif %}" href="#" value="{{ language.code|upper }}" onclick="changeLanguage('{{ language.code }}')">{{ language.name_translated }}</a></li> {% endcomment %}
+                    {% comment %} <li><a class="opt-lang {% if language.code == LANGUAGE_CODE %}active{% endif %}" href="{% if language.code != 'en' %}{% url 'set_language' language=language.code %}{% else %}#{% endif %}" value="{{ language.code }}">{{ language.name_translated }}</a></li> {% endcomment %}
+                {% endfor %}
+            </ul>
+            {% comment %} <input id="change-language" type="submit" value="Change Language" style="display: none;"> {% endcomment %}
+            
+        {% comment %} </form> {% endcomment %}
     </div>
 
 </nav>

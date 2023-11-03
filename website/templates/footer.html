@@ -1,14 +1,25 @@
+{% load i18n %}
+
+{% translate "About" as section_about %}
+{% translate "Skills" as section_skills %}
+{% translate "Experiences" as section_experiences %}
+{% translate "Projects" as section_projects %}
+{% translate "Contact" as section_contact %}
+
+{% translate "Privacy Policy" as link_privacy %}
+{% translate "Terms of Use" as link_terms %}
+
 <div class="footer-wrapper">
     <div class="footer-section">
         <div class="footer-subscribe">
             <h2>
-                Feel free to contact me.
+                {% translate "Feel free to contact me." %}
             </h2>
-            <p>Soon I will make a blog available where you can follow some of my private projects.</p>
+            <p>{% translate "Soon I will make a blog available where you can follow some of my private projects." %}</p>
             <div class="footer-systems">
                 <ul>
-                    <li><span class="active" href="#">Website</span></li>
-                    <li><a class="" href="#">Blog</a></li>
+                    <li><span class="active" href="#">{% translate "Website" %}</span></li>
+                    <li><a class="" href="#">{% translate "Blog" %}</a></li>
                 </ul>
             </div>
 
@@ -40,13 +51,13 @@
 
         <nav class="footer-nav">
             <div>
-                <h3>Website</h3>
+                <h3>{% translate "Website" %}</h3>
                 <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#tecnologies">Technologies</a></li>
-                    <li><a href="#career">Career</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">{{ section_about }}</a></li>
+                    <li><a href="#tecnologies">{{ section_tecnologies }}</a></li>
+                    <li><a href="#experiences">{{ section_experiences }}</a></li>
+                    <li><a href="#projects">{{ section_projects }}</a></li>
+                    <li><a href="#contact">{{ section_contact }}</a></li>
                 </ul>
             </div>
             {% comment %} <div>
@@ -57,7 +68,7 @@
                 </ul>
             </div> {% endcomment %}
             <div>
-                <h3>Connect</h3>
+                <h3>{% translate "Conect" %}</h3>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/thiago-tjas/?locale=en_US">LinkedIn</a></li>
                     <li><a href="https://github.com/tjas">GitHub</a></li>
@@ -71,15 +82,15 @@
 
     <div class="footer-legals">
         <div class="footer-copyright">
-            <p>© {% now "Y" %} Thiago Jorge Almeida dos Santos, all rights reserved.</p>
+            <p>© {% now "Y" %} Thiago Jorge Almeida dos Santos, {% blocktranslate %}all rights reserved.{% endblocktranslate %}</p>
         </div>
         <div class="footer-politics">
             <ul>
                 <li>
-                    <a href="#"><p>Privacy Policy</p></a>
+                    <a href="#"><p>{{ link_privacy }}</p></a>
                 </li>
                 <li>
-                    <a href="#"><p>Terms of Use</p></a>
+                    <a href="#"><p>{{ link_terms }}</p></a>
                 </li>
             </ul>
         </div>

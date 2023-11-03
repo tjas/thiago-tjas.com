@@ -269,10 +269,6 @@ margin-left: 45%;
     color: var(--color-palette-4);
 }
 
-.logo {
-    animation: fade-in 1s ease-in 1 forwards;
-}
-
 .glass {
     -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
@@ -424,15 +420,15 @@ section div.content {
     animation-delay: .5s;
 }
 
-/* section#technologies {
+/* section#skills {
     border-bottom: 1px solid var(--color-palette-3);
 } */
 
-/* section#career {
+/* section#experiences {
     border-bottom: 1px solid #5e5e5e;
 } */
 
-/* section#portfolio { */
+/* section#projects { */
     /* background: linear-gradient(0deg, var(--color-palette-1) , rgba(0,0,0,0)); */
     /* background: linear-gradient(180deg, #040406, #a637c833); */
     /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
@@ -455,6 +451,10 @@ section#about div.content #infos {
     display: flex;
     flex-direction: column;
     width: 40%;
+}
+
+h3.title {
+    font-size: 3.6rem;
 }
 
 .avatar {
@@ -537,6 +537,7 @@ section#about div.content #infos {
     height: 32px; */
     cursor: pointer;
     isolation: isolate;
+    animation: fade-in 1s ease-in 1 forwards;
 }
 
 /* #navbar {
@@ -566,6 +567,10 @@ section#about div.content #infos {
   
 .show {
     display: block;
+}
+
+#menu li a {
+    color: inherit;
 }
 
 #menu li:not(.localization) a:hover {
@@ -995,10 +1000,12 @@ footer {
     padding-bottom: 0.4rem;
     opacity: 0.5;
 }
-.footer-systems > ul > li > a,
-.footer-legals > ul > li > a,
-.footer-nav > ul > li > a {
+.footer-systems ul li a,
+.footer-legals div ul li a,
+.footer-nav div ul li a {
     cursor: pointer;
+    color: var(--color-palette-4);
+    text-decoration: none;
 }
 /* .footer-systems > ul > li > a:hover {
     border-bottom: .1rem solid rgb(255, 255, 255);

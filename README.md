@@ -67,6 +67,23 @@ sudo yum update ca-certificates
 sudo yum update
 ```
  -->
+# Django internationalization
+
+Useful Django commands:
+
+```sh
+# Create or update a message file
+django-admin makemessages -l pt_BR 
+django-admin makemessages -l pt
+
+# Create or update all message files
+django-admin makemessages -a
+
+# Compiling message files
+django-admin compilemessages
+
+```
+
 ## Contact
 
 **Thiago Jorge Almeida dos Santos**, project author and maintainer.

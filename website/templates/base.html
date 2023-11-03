@@ -1,5 +1,11 @@
 <!DOCTYPE html>
+
+{% load i18n %}
+
 {% load static %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
 <html lang="en">
     <head>
         <!-- Bootstrap required meta tags -->
@@ -27,29 +33,34 @@
     </head>
     
     <body id="body" class="bg-dark bg-primary-0">
-        {% comment %} <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script> {% endcomment %}
-        <header>
-            {% include 'navbar.html' %}
-        </header>
-
-        <main class="scrollable-content"> 
-            {% block content %}
-            {% include 'home.html' %}
-            {% endblock %}
+        <!-- Current language: {{ LANGUAGE_CODE }} -->
+        {% language LANGUAGE_CODE %}
+            {% comment %} <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script> {% endcomment %}
             
-            <aside id="scrollbar-track" class="scrollbar-track scrollbar-track-y">
-                <div id="scrollbar-thumb" class="scrollbar-thumb scrollbar-thumb-y"></div>
-            </aside>
+            <header>
+                {% include 'navbar.html' %}
+            </header>
 
-            <footer>
-                {% include 'footer.html' %}
-            </footer>
-        </main>
-        
-        {% comment %} <script type="text/javascript" src="{% static 'js/tooltips.js' %}"></script> {% endcomment %}
-        
-        {% comment %} <script type="text/javascript" src="{% static 'js/smoothscroll.js' %}"></script> {% endcomment %}
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-        {% comment %} <script type="text/javascript" src="{% static 'js/main.jquery.js' %}"></script> {% endcomment %}
+            <main class="scrollable-content"> 
+                {% block content %}
+                {% include 'home.html' %}
+                {% endblock %}
+                
+                <aside id="scrollbar-track" class="scrollbar-track scrollbar-track-y">
+                    <div id="scrollbar-thumb" class="scrollbar-thumb scrollbar-thumb-y"></div>
+                </aside>
+
+                <footer>
+                    {% include 'footer.html' %}
+                </footer>
+            </main>
+            
+            {% comment %} <script type="text/javascript" src="{% static 'js/tooltips.js' %}"></script> {% endcomment %}
+            
+            {% comment %} <script type="text/javascript" src="{% static 'js/smoothscroll.js' %}"></script> {% endcomment %}
+            <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+            {% comment %} <script type="text/javascript" src="{% static 'js/main.jquery.js' %}"></script> {% endcomment %}
+
+        {% endlanguage %}
     </body>
 </html>

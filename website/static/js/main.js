@@ -390,10 +390,14 @@ document.querySelectorAll('.localization').forEach(
         });
 });
 
+function getAnchor() {
+    return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+}
+
 document.querySelectorAll('.opt-lang').forEach(
     opt => {
         opt.addEventListener('click', function(e) {
-                document.querySelectorAll('.opt-lang').forEach(
+                /* document.querySelectorAll('.opt-lang').forEach(
                     e => e.classList.remove('active')
                 );
                 //e.target.classList.add('active');
@@ -402,10 +406,31 @@ document.querySelectorAll('.opt-lang').forEach(
                     e => e.classList.add('active')
                 );
 
-                document.getElementById("lang").textContent = language;
-                toggleInternationalization();
+                document.getElementById("lang").textContent = String(language).toUpperCase();
+                toggleInternationalization(); */
+                let anchor = getAnchor();
+                if (anchor) {
+                    let href = e.target.getAttribute('href');
+                    e.target.setAttribute('href', href+'#'+anchor);
+                };
+            });
         });
-});
+        
+        
+//changeLanguage(language);
+
+/* const userData = fetch(`http://localhost:8001/?language=${language}`).then(function(response) {
+    return response.text();
+}).then(function(string) {
+    console.log(string);
+}); */
+
+/* function changeLanguage(language) {
+    //trigger( document.querySelector('#change-language'), 'click' );
+    const userData = fetch(`https://api.com/api/user/${userId}`)
+   .then(response => response.json())
+   .then(data => console.log(data.name))
+}; */
 
 /**
  * Avatar image moving effect

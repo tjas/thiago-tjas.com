@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load static %}
 
 {% block content %}
 
+{% translate "About" as section_about %}
+{% translate "Skills" as section_skills %}
+{% translate "Experiences" as section_experiences %}
+{% translate "Projects" as section_projects %}
+{% translate "Contact" as section_contact %}
+
 <div>
     <section id="about" class="section">
         <div class="bg-text-container bg-text-align-left">
-            <div class="bg-text-text">About</div>
+            <h2 class="bg-text-text">{{ section_about }}</h2>
         </div>
         <div class="content">
             <article id="infos">
                 <div>
-                    <h2>Thiago Jorge Almeida dos Santos</h2>
-                    <p class="location">Brasília, Federal District, Brazil</p>
-                    <p>Be welcome! My name is Thiago Jorge. I'm currently working in software development and Artificial Intelligence at BRB Bank. I'm Computer Science Bachelor, Artificial Intelligence specialist, developer, like learning new technologies and work on big projects.</p>
+                    <h3 class="title">Thiago Jorge Almeida dos Santos</h3>
+                    <p class="location">{% translate "Brasília, Federal District, Brazil" %}</p>
+                    <p>{% translate "Be welcome! My name is Thiago Jorge. I'm currently working in software development and Artificial Intelligence at BRB Bank. I'm Computer Science Bachelor, Artificial Intelligence specialist, developer, like learning new technologies and work on big projects." %}</p>
                 </div>
                 <div id="networks">
                     <ul>
@@ -61,7 +69,7 @@
             
             <div id="avatar" class="avatar">
                 <div class="image-container">
-                    <img class="img" src="{% static 'img/photos/photo-rio_v2_complete.png' %}" alt="Photography of Thiago Jorge" />
+                    <img class="img" src="{% static 'img/photos/photo-rio_v2_complete.png' %}" alt="{% translate "Thiago Jorge' Photography" %}" />
                 </div>
             </div>
         </div>
@@ -79,42 +87,42 @@
       </script>
       <p id="jqtest"></p> {% endcomment %}
     
-    <section id="technologies" class="section">
+    <section id="skills" class="section">
         <div class="bg-text-container bg-text-align-right">
-            <div class="bg-text-text">Technologies</div>
+            <h2 class="bg-text-text">{{ section_skills }}</h2>
         </div>
         <div class="content">
-            <p>Technologies</p>
+            <p>{{ section_skills }}</p>
         </div>
     </section>
 
-    <section id="career" class="section">
+    <section id="experiences" class="section">
         <div class="bg-text-container bg-text-align-left">
-            <div class="bg-text-text">Career</div>
+            <h2 class="bg-text-text">{{ section_experiences }}</h2>
         </div>
         <div class="content">
-            <p>Career</p>
+            <p>{{ section_experiences }}</p>
         </div>
 
         <div class="bg-ellipse-white bg-top-right"></div>
     </section>
 
 
-    <section id="portfolio" class="section">
+    <section id="projects" class="section">
         <div class="bg-text-container bg-text-align-right">
-            <div class="bg-text-text">Portfolio</div>
+            <h2 class="bg-text-text">{{ section_projects }}</h2>
         </div>
         <div class="content">
-            <p>Portfolio</p>
+            <p>{{ section_projects }}</p>
         </div>
     </section>
 
     <section id="contact" class="section">
         <div class="bg-text-container bg-text-align-left">
-            <div class="bg-text-text">Contact</div>
+            <h2 class="bg-text-text">{{ section_contact }}</h2>
         </div>
         <div class="content">
-            <p>Contact</p>
+            <p>{{ section_contact }}</p>
         </div>
     </section>
     {% comment %} <aside class="on-scroll"></aside> {% endcomment %}
@@ -128,7 +136,7 @@
         <div>
             <h2>Thiago Jorge Almeida dos Santos</h2>
             <p class="location">Brasília, Federal District, Brazil</p>
-            <p>Be welcome! My name is Thiago Jorge. I'm currently working in software development and Artificial Intelligence at BRB Bank. I'm Computer Science Bachelor, Artificial Intelligence specialist, developer, like learning new technologies and work on big projects.</p>
+            <p>Be welcome! My name is Thiago Jorge. I'm currently working in software development and Artificial Intelligence at BRB Bank. I'm Computer Science Bachelor, Artificial Intelligence specialist, developer, like learning new skills and work on big projects.</p>
         </div>
         <div id="networks">
             <ul>
