@@ -18,7 +18,16 @@
 
         <script src="https://kit.fontawesome.com/ad69d24e07.js" crossorigin="anonymous"></script>
         
-        <title>{% block title %}thiago-tjas{% endblock %}</title>
+        <title>Thiago Jorge Almeida dos Santos - {% block title %}{% blocktranslate trimmed %} Personal Website Homepage {% endblocktranslate %}{% endblock %}</title>
+
+        <meta 
+            name="description" 
+            content="{% blocktranslate trimmed %} 
+                Personal website home page of Thiago Jorge Almeida dos Santos, a brazillian software developer from Brasilia, Federal District. 
+                Artificial Intelligence specialist, Python back-end web developer with Django, Flask and FastAPI; leadership, 
+                trustworthy, communicative; and able to work under pressure, customer-oriented and focusing on results.
+                {% endblocktranslate %}"
+        >
 
         {% comment %} <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script> {% endcomment %}
 

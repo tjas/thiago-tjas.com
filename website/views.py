@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.http import HttpRequest, HttpResponse
+from django.conf import settings
 
-""" from django.conf import settings
-from django.http import HttpResponse, HttpRequest
-from django.utils import translation """
+import os
 
 # Create your views here.
 
@@ -13,12 +13,15 @@ class Home(TemplateView):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html', {})
+    
+def robots(request: HttpRequest):
+    if not settings.DEBUG:
+        path = os.path.join(settings.STATIC_ROOT, 'robots.txt')
+    else:
+        path = os.path.join(settings.BASE_DIR, 'website/static/robots.txt')
+    
+    with open(path, 'r') as file:
+        return HttpResponse(file, content_type='text/plain')
 
-""" def translate(request: HttpRequest):
-    if request.method == 'GET':
-        language = request.GET.get('language', 'en')
-        translation.activate(language)
-        response = HttpResponse('home.html')
-        #response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
-        settings.LANGUAGE_COOKIE_NAME = language
-        return response """
+# def handler(request: HttpRequest):
+#     return render(request, '404.html')

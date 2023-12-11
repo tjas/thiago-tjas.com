@@ -16,18 +16,20 @@
     <h1 class="logo">
         {% comment %} <img class="navbar-logo-icon" src="{% static 'img/logo.png' %}" /> {% endcomment %}
         {% comment %} <img class="navbar-logo-text" src="{% static 'img/logo-text.png' %}" /> {% endcomment %}
-        <span>TJAS | Website</span>
+        <a href="{% url 'home' %}">TJAS | Website</a>
     </h1>
     <img
         id="menu-icon"
         class="menu-icon"
         src="{% static 'img/svg/burger-menu.svg' %}"
-        title="{% translate "Toggle Menu" %}"
-        alt="{% translate "Toggle Menu" %}"
-        onclick="toggleMenu(this)"
+        title="{% translate "Toggle menu" %}"
+        alt="{% translate "Toggle menu" %}"
+        onclick="toggleMenuIcon(this)"
+        role="img"
     >
     <ul id="menu" class="menu">
 
+        {% comment %} <li><a id="menu-404" href="{% url 'handler404' %}" class="opt">404</a></li> {% endcomment %}
         <li><a id="menu-about" href="#about" class="opt active">{{ section_about }}</a></li>
         <li><a id="menu-skills" href="#skills" class="opt">{{ section_skills }}</a></li>
         <li><a id="menu-experiences" href="#experiences" class="opt">{{ section_experiences }}</a></li>
@@ -70,9 +72,10 @@
         <div class="go-back">
             <img
                     src="{% static 'img/svg/send.svg' %}"
-                    title="{% translate "Back" %}"
-                    alt="{% translate "Back" %}"
-                    onclick="toggleInternationalization(this)"
+                    title="{% translate "Go back" %}"
+                    alt="{% translate "Go back" %}"
+                    onclick="backLanguageOptionsFullScreen(this)"
+                    role="img"
                 >
                 {% comment %} <button
                     title='Back'

@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
-from website.views import Home
+from website.views import Home, robots #, handler
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
+    path('robots.txt', robots),
+    #path('404/', handler, name='handler404')
 ] + i18n_patterns(path('', Home.as_view(), name='home'))
+
+#handler404 = "website.views.handler404"

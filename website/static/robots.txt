@@ -1,0 +1,7 @@
+# thiago-tjas.com/robots.txt
+User-agent: *
+Disallow: /admin
+Disallow: /i18n
+Allow: /
+Allow: /en
+Allow: /pt

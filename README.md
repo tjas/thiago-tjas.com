@@ -32,6 +32,47 @@ O website foi implantado do zero em um servidor virtual privado [Amazon Web Serv
 
 The website was deployed into an [Amazon Web Service (AWS) Lightsail VPS](https://aws.amazon.com/lightsail/), using an [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) image from scratch. An article addressing the experiences obtained in this process is under construction, when completed it will be made available here: [Deploying a Django Website on AWS Lightsail VPS](./ARTICLE_DEPLOYNG_A_DJANGO_WEBSITE_ON_AWS_LIGHTSAIL_VPS.md).
 
+## Features
+
+- [x] Internationalization
+  - [x] English
+  - [x] Portuguese
+- [x] Navigation
+- [x] Responsiveness
+- [x] 404 Not Found
+- [ ] External database
+- [ ] External environment variables
+- [ ] [GSAP](https://gsap.com/) animation
+- [ ] LGPD compliance
+- [ ] GDPR compliance
+- [ ] Webserver
+  - [x] DNS
+  - [ ] Screen
+  - [ ] Nginx
+  - [ ] HTTPS
+- [ ] SEO
+  - [x] robot.txt
+  - [x] Metatags
+  - [ ] Sitemap
+- [ ] Website
+  - [x] About
+  - [ ] Skills
+  - [ ] Experiences
+  - [ ] Projects
+  - [ ] Contact
+    - [ ] E-mail dispatcher
+    - [ ] Signals' message
+- [ ] Blog
+  - [ ] Articles
+  - [ ] Reactions
+  - [ ] Comments
+  - [ ] Syndication feed (RSS)
+- [ ] Tracking
+  - [x] Mouse moving
+  - [ ] Visit mapping
+  - [ ] Logging
+
+
 ## Running on Docker
 
 Useful Docker commands:

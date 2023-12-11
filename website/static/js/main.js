@@ -1,5 +1,72 @@
-/**
- * Mapping page mouse position
+//============================================================================================
+// Stable
+//============================================================================================
+
+/* Constants and variables */
+
+const pathIconBurger = '/static/img/svg/burger-menu.svg';
+const pathIconClose = '/static/img/svg/close.svg';
+const menu = document.getElementById('menu');
+const menuIcon = document.querySelector(".menu-icon");
+
+/** Navigation */
+
+let back = true;
+
+/** Threshold to elemnt size.
+ */
+const threshold = 51;
+
+/** Keep scroll position.
+ */
+let lastKnownScrollPosition = 0;
+
+/** Custom thumb definition.
+ */
+const thumb = document.getElementById("scrollbar-thumb");
+
+
+
+/* Utils */
+
+/** toggle element (Element) class value.
+ * @param {Element} element element to have class value toggle.
+ * @param {string} value class value to be toggle.
+ */
+function toggleElementClass(element, value){
+    element.classList.toggle(value);
+};
+/** Togle Elements (HTMLElement) visibility. 
+ * You can get an Element in this way: document.getElementById("myDIV").
+ * @param {HTMLElement} element the element to be hidden or shown.
+ */
+function toggleVisibility(element) {
+    if (element.style.display === "none") {
+        element.style.display = "block";
+    } else {
+        element.style.display = "none";
+    }
+};
+function setVisible(element){
+    if (element.style.display === "none") {
+        element.style.display = "block";
+    };
+};
+function setInvisible(element){
+    if (element.style.display !== "none") {
+        element.style.display = "none";
+    };
+};
+/** Dispatch an event from an specific element (Element).
+ * @param {Element} element the element from where the event will be dispatched.
+ * @param {string} eventtype the event string to be dispatched.
+ * @param {Event} customevent (optional) an specific event (Event) to be dispatched.
+ */
+const trigger = (element, eventtype, customevent) => {
+    const evt = customevent ?? new Event( eventtype );
+    element.dispatchEvent( evt );
+};
+/** Create a live page mouse position mapping.
  * Based on https://www.instagram.com/p/Cq-uQjiv9KF/?img_index=1
 */
 document.getElementById("body").onmousemove = e => {
@@ -8,13 +75,220 @@ document.getElementById("body").onmousemove = e => {
             y = e.clientY - rect.top;
     document.getElementById("body").style.setProperty("--mouse-x", `${x}px`);
     document.getElementById("body").style.setProperty("--mouse-y", `${y}px`);
+};
+/** Returns the number if it is greater than or equals zero; or returns zero if it is less than zero.
+ * @param {number} number the number to be evaluated.
+ * @returns {number} returns the number, if it is greater than or equal zero; or returs zero if it is less than zero.
+ */
+function keepGreaterOrEqualThanZero(number) {
+    return (number < 0) ? 0 : number;
+};
+/** Returns the anchor position, from URL, if exists.
+ * @returns {string|null} the anchor string position if exists, null otherwise.
+ */
+function getAnchor() {
+    return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+};
+
+
+
+/* Page scrolling */
+
+/** Check if an element (Element) is visible on screen.
+ * @param {Element} element the element wich visibility will be checked;
+ * @param {number} threshold threshold to elemnt size;
+ * @param {string} mode visibility state. Values available: visible, below and above; defaults to visible;
+ * @returns {boolean} true if the element is in the mode state, false otherwise.
+ */
+function checkVisibility(element, threshold=51, mode='visible') {
+    threshold = threshold || 0;
+    let rect = element.getBoundingClientRect();
+    let viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    let above = rect.bottom - threshold < 0;
+    let below = rect.top - viewHeight + threshold >= 0;
+    return mode === 'above' ? above : (mode === 'below' ? below : !above && !below);
+};
+/** Defines menu selection related to scroll position.
+ */
+document.onscroll = function() {
+    for(const section of document.getElementsByClassName("section")){
+        if (checkVisibility(section, threshold)) {
+            document.querySelectorAll('.section').forEach(
+                e => e.classList.remove('active')
+            );
+            document.querySelectorAll('.opt').forEach(
+                e => e.classList.remove('active')
+            );
+            section.classList.add('active');
+            let opt = document.querySelector('#menu-' + section.getAttribute('id'));
+            opt.classList.add('active');
+            //console.log('True ' + sect.getAttribute('id'))
+        }
+    };
+};
+/** Controlls the custom thumb position, defined by thumb constant.
+ */
+window.onscroll = function() {
+    if (thumb) {
+        let rect = thumb.getBoundingClientRect();
+        //let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) ) - (rect.bottom - rect.top);
+        //let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) ) + ((rect.bottom - rect.top) / 2);
+        let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) );
+        //console.log(shift);
+        //thumb.style.transform = 'translateY(' + keepGreaterOrEqualThanZero(shift) + 'px)';
+        thumb.style.transform = 'translateY(' + shift + 'px)';
+    }
+    lastKnownScrollPosition = window.scrollY;
+};
+
+
+
+/* Navbar and menu controll */
+
+/** Controlls menu toggle.
+ */
+function toggleMenuIcon() {
+    let src = menuIcon.getAttribute('src');
+    if (src === pathIconClose){
+        closeLanguageOptionsFullScreen();
+        closeMenuOptionsFullScreen();
+        back = false;
+    } else {
+        openMenuOptionsFullScreen();
+        back = true;
+    };
+    let iconName = src === pathIconBurger ? pathIconClose : pathIconBurger;
+    menuIcon.setAttribute('src', iconName);
+};
+function setMenuIconClose() {
+    menuIcon.setAttribute('src', pathIconClose);
 }
+function setMenuIconBurger() {
+    menuIcon.setAttribute('src', pathIconBurger);
+}
+function getMenuIcon(){
+    return menuIcon.getAttribute('src');
+}
+
+function closeMenuOptionsFullScreen() {
+    if (menu.classList.contains('menu--mobile')){
+        toggleElementClass(menu, 'menu--mobile');
+        //setInvisible(menu);
+    };
+};
+function closeLanguageOptionsFullScreen() {
+    let internationalization = document.querySelector('.internationalization');
+    if (internationalization.classList.contains('internationalization--mobile')){
+        toggleElementClass(internationalization, 'internationalization--mobile');
+    };
+};
+
+/** Controlls the menu options list full screen toggle.
+ * 
+ */
+function toggleMenuOptionsFullScreen() {
+    closeLanguageOptionsFullScreen();
+    toggleElementClass(menu, 'menu--mobile');
+};
+
+function openMenuOptionsFullScreen() {
+    closeLanguageOptionsFullScreen();
+    if (!menu.classList.contains('menu--mobile')){
+        toggleElementClass(menu, 'menu--mobile');
+    };
+};
+
+/** Controlls the languages list full screen toggle.
+ */
+const toggleLanguageOptionsFullScreen = () => {
+    closeMenuOptionsFullScreen();
+    let internationalization = document.querySelector('.internationalization');
+    toggleElementClass(internationalization, 'internationalization--mobile');
+};
+
+function openLanguageOptionsFullScreen() {
+    closeMenuOptionsFullScreen();
+    let internationalization = document.querySelector('.internationalization');
+    if (!internationalization.classList.contains('internationalization--mobile')){
+        toggleElementClass(internationalization, 'internationalization--mobile');
+    };
+};
+
+const backLanguageOptionsFullScreen = () => {
+    if(back) {
+        toggleMenuOptionsFullScreen();
+    } else {
+        trigger(menuIcon, 'click');
+        closeLanguageOptionsFullScreen();
+    };
+};
+
+/** Controlls the menu options list click event.
+ */
+document.querySelectorAll('.opt').forEach(
+    option => {
+        option.addEventListener('click', function(event) {
+            if (menu.classList.contains('menu--mobile')){
+                trigger(menuIcon, 'click');
+            };
+        });
+});
+
+/** Controlls the languages list click event.
+ */
+document.querySelectorAll('.opt-lang').forEach(
+    option => {
+        option.addEventListener('click', function(event) {
+                let anchor = getAnchor();
+                if (anchor) {
+                    let href = event.target.getAttribute('href');
+                    event.target.setAttribute('href', href+'#'+anchor);
+                };
+        });
+    });
+
+/** Controlls the localization button click event.
+ */
+document.querySelectorAll('.localization').forEach(
+    opt => {
+        opt.addEventListener('click', function(event) {
+            toggleLanguageOptionsFullScreen();
+            setMenuIconClose();
+        });
+});
+
+function verifyMenuIconVisibility() {
+    if (window.innerWidth <= 780 || document.querySelector('.internationalization').classList.contains('internationalization--mobile')) {
+        if(menu.classList.contains('menu--mobile')){
+            menu.style.display = 'flex';
+        } else {
+            menu.style.display = 'none';
+        };
+        menuIcon.style.display = 'block';
+    } else {
+        menu.style.display = 'block';
+        menuIcon.style.display = 'none';
+    }
+};
+  
+window.onload = window.onresize = window.onchange = verifyMenuIconVisibility;
+  
+const observer = new MutationObserver(function() {
+    verifyMenuIconVisibility();
+});
+  
+observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+  
+
+//============================================================================================
+// Draft
+//============================================================================================
 
 /**
  * Mapping card mouse position
  * Based on https://www.instagram.com/p/Cq-uQjiv9KF/?img_index=1
-*/
-/* document.getElementById("cards").onmousemove = e => {
+
+document.getElementById("cards").onmousemove = e => {
     for(const card of document.getElementsByClassName("card")){
         const rect = card.getBoundingClientRect(),
               x = e.clientX - rect.left,
@@ -24,18 +298,9 @@ document.getElementById("body").onmousemove = e => {
     };
 } */
 
-
-/**
- * Manage navbar
- */
-
-
-
-
-
-
 /**
  * Manage scrollbar
+ * Based on https://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
  */
 
 /* window.addEventListener('scroll', this.handleScroll, true);
@@ -46,45 +311,11 @@ handleScroll = (e) => {
     }
 } */
 
-/** 
- * Manage Visible Scroll
- * Based on https://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
- */
+
+//const visiblePercent = 0.51;
 
 
-const dist = 51;
-const visiblePercent = 0.51;
 
-document.onscroll = function() {
-    for(const sect of document.getElementsByClassName("section")){
-        if (checkVisible(sect, dist)) {
-            document.querySelectorAll('.section').forEach(
-                e => e.classList.remove('active')
-            );
-            document.querySelectorAll('.opt').forEach(
-                e => e.classList.remove('active')
-            );
-            sect.classList.add('active');
-            let opt = document.querySelector('#menu-' + sect.getAttribute('id'));
-            opt.classList.add('active');
-            //console.log('True ' + sect.getAttribute('id'))
-        }
-    };
-}
-
-function checkVisible(elm, threshold, mode) {
-    threshold = threshold || 0;
-    //mode = mode || 'visible';
-
-    let rect = elm.getBoundingClientRect();
-    let viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-    let above = rect.bottom - threshold < 0;
-    let below = rect.top - viewHeight + threshold >= 0;
-
-    //return mode === 'above' ? above : (mode === 'below' ? below : !above && !below);
-    let response = !above && !below;
-    return response;
-  }
 
 /* function checkVisible2(elm, threshold) {
     threshold = threshold || 1.0;
@@ -164,7 +395,6 @@ function dragElement(elmnt) {
     }
 } */
 
-
 /* $("#scrollbar-thumb").draggable({
     axis: "y",
     revert: false,
@@ -201,34 +431,13 @@ for(var n=0; n<x.children.length; n++) {
     })(x.children[n])
 } */
 
-
-
 /* document.getElementById("scrollbar").addEventListener("scroll", (e) => {
 
 }); */
 
-
 /* window.onscroll = function() {myFunction()}; */
 
-let lastKnownScrollPosition = 0;
-let thumb = document.getElementById("scrollbar-thumb");
 
-window.onscroll = function() {
-    if (thumb) {
-        let rect = thumb.getBoundingClientRect();
-        //let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) ) - (rect.bottom - rect.top);
-        //let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) ) + ((rect.bottom - rect.top) / 2);
-        let shift = ( window.scrollY / (document.documentElement.scrollHeight / window.innerHeight) );
-        //console.log(shift);
-        //thumb.style.transform = 'translateY(' + keepGreaterOrEqualThanZero(shift) + 'px)';
-        thumb.style.transform = 'translateY(' + shift + 'px)';
-    }
-    lastKnownScrollPosition = window.scrollY;
-};
-
-function keepGreaterOrEqualThanZero(n) {
-    return (n < 0) ? 0 : n;
-}
 
 /* function myFunction() {
   if (document.body.scrollTop || document.documentElement.scrollTop) {
@@ -251,11 +460,9 @@ function keepGreaterOrEqualThanZero(n) {
   $('html,body').animate({scrollTop:$(location.hash).offset().top}, 500);
 }); */
 
-
 /*   button.addEventListener("show", {
 
   }); */
-
 
 /* document.onscrollend = e => {
     for(const sect of e){
@@ -313,109 +520,6 @@ document.querySelectorAll('.opt') = e => {
     $(this).addClass('active');
 }); */
 
-/** 
- * Toogle Menu 
- */
-const toggleMenu = () => {
-    const menuIcon = document.querySelector(".menu-icon");
-    const src = menuIcon.getAttribute('src');
-    const iconName = src === '/static/img/svg/burger-menu.svg' ?
-        '/static/img/svg/close.svg'
-        :
-        '/static/img/svg/burger-menu.svg';
-
-
-    menuIcon.setAttribute(
-        'src',
-        iconName
-    );
-
-    const navigation = document.querySelector('.menu');
-
-    navigation.classList.toggle(
-        'menu--mobile'
-    );
-
-    let internationalization = document.getElementById('internationalization');
-    if (internationalization.classList.contains('internationalization--mobile')){
-        toggleInternationalization();
-    }
-
-};
-
-const trigger = (el, etype, custom) => {
-    const evt = custom ?? new Event( etype );
-    el.dispatchEvent( evt );
-  };
-
-document.querySelectorAll('.opt').forEach(
-    opt => {
-        opt.addEventListener('click', function(event) {
-            let navigation = document.getElementById('menu');
-            if (navigation.classList.contains('menu--mobile')){
-                trigger( document.querySelector('.menu-icon'), 'click' );
-            };
-        });
-});
-
-const toggleInternationalization = () => {
-    const navigation = document.querySelector('.menu');
-
-    navigation.classList.toggle(
-        'menu--mobile'
-    );
-
-    const internationalization = document.querySelector('.internationalization');
-
-    internationalization.classList.toggle(
-        'internationalization--mobile'
-    );
-
-    navigation.classList.toggle(
-        'menu--mobile'
-    );
-};
-
-document.querySelectorAll('.localization').forEach(
-    opt => {
-        opt.addEventListener('click', function(event) {
-            /* let internationalization = document.getElementById('internationalization');
-            if (!internationalization.classList.contains('internationalization--mobile')){
-                toggleInternationalization();
-            }; */
-            toggleInternationalization();
-            /* internationalization.classList.toggle(
-                'show'
-            ); */
-        });
-});
-
-function getAnchor() {
-    return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
-}
-
-document.querySelectorAll('.opt-lang').forEach(
-    opt => {
-        opt.addEventListener('click', function(e) {
-                /* document.querySelectorAll('.opt-lang').forEach(
-                    e => e.classList.remove('active')
-                );
-                //e.target.classList.add('active');
-                let language = e.target.getAttribute('value') ;
-                document.querySelectorAll(`.opt-lang[value="${language}"]`).forEach(
-                    e => e.classList.add('active')
-                );
-
-                document.getElementById("lang").textContent = String(language).toUpperCase();
-                toggleInternationalization(); */
-                let anchor = getAnchor();
-                if (anchor) {
-                    let href = e.target.getAttribute('href');
-                    e.target.setAttribute('href', href+'#'+anchor);
-                };
-            });
-        });
-        
         
 //changeLanguage(language);
 
@@ -435,8 +539,6 @@ document.querySelectorAll('.opt-lang').forEach(
 /**
  * Avatar image moving effect
  */
-
-
 
 /**
  * Dropdown button
